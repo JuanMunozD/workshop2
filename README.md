@@ -2,70 +2,127 @@
 
 Basic concepts to develop in the ARSW class
 
-## Git Basic Concepts
-### Creating a Local Repository
+## Install Maven
 
-In the next image you can see the creation of the folder, the command line to go tothe folder and the command yo create a new local repository in this folder
+As I had seen CVDS class the last semester, and my pc has not changed in this time, maven was install previously in my pc
 
-<img  src="https://github.com/JuanMunozD/workshop1/blob/master/imagenes/Captura.PNG">
+## Create Maven Project
 
-### Let's  code
+### Create a new maven project using a command
 
-The IDE that was used to solve this problem was Eclipse 2019-09
+I used the command that was established in this workshop
 
-The following image, shows the solution of the problem using java
-
-<img  src="https://github.com/JuanMunozD/workshop1/blob/master/imagenes/SolucionAnagrama.PNG">
-
-### Preserving our changes
-
-#### Git Add
-The next image shows the use of the command git add. (This command is used to add all the changes in one or more archives )
-
-<img  src="https://github.com/JuanMunozD/workshop1/blob/master/imagenes/gitAdd.PNG">
-
-
-#### Git Commit
-The following command is used to save the changes of the project and track the record of the repository
-
-<img  src="https://github.com/JuanMunozD/workshop1/blob/master/imagenes/gitCommit.PNG">
-
-### Using GitHub
-
-As I have my github account there was no need of creating a new one
-I created a new repository with the name workshop1
-And used the command to link my local repository with the remote repository
 ```
-git remote add origin https://github.com/JuanMunozD/workshop1.git
+mvn archetype:generate -B -DgroupId=edu.eci -DartifactId=file-spy
 ```
 
-The follwing image show how was develop this steps
+With this command a new maven project was created as shown in the next image
 
-<img  src="https://github.com/JuanMunozD/workshop1/blob/master/imagenes/usingGithub.PNG">
+<img  src="https://github.com/JuanMunozD/workshop2/blob/master/imagenes/mvnNew.PNG">
 
-### Using the push command
-The command git push origin to master is used to save the content of the local repository to a remote repository, that in this case is github
+### Questions
 
-<img  src="https://github.com/JuanMunozD/workshop1/blob/master/imagenes/gitPush.PNG">
+* What do means the -B option in the command?
 
-### Cloning our repository
+This option means 
 
-The command git clone respository is to have a local workspace of the repository created. In this case it was clonned in the folder as a new folder with all that is present in the remote repository
+* What do means the -D option in the command?
 
-<img  src="https://github.com/JuanMunozD/workshop1/blob/master/imagenes/gitClone.PNG">
 
-### Let's code 2
 
-Using the hint in the repository, the code that solve the problem is shown in the following image
+* What do means the groupId, artifactId properties in the command?
 
-<img  src="https://github.com/JuanMunozD/workshop1/blob/master/imagenes/SolutionEOF.PNG">
+groupId is the unique identifier of the project across all projects
+artifactId is the jar name without an specific version
 
-### Using pull command
+* Describe the content of the directory that has been created.
 
-This command is used to extract all the content from a remote repository and save all the changes in the local repository
+The content that was created was a folder that has a src and a pom.XML, in the src the resulting tree is showed in the following image
 
-### Preserve all the changes
+<img  src="https://github.com/JuanMunozD/workshop2/blob/master/imagenes/mvnTree.PNG">
 
-To end this workshop I saved all the changes using the commands touch in this workshop
+* Create the folders src/main/resources and src/test/resources
 
-<img  src="https://github.com/JuanMunozD/workshop1/blob/master/imagenes/endWorkShop.PNG">
+The following image shows the creation of this folders
+
+<img  src="https://github.com/JuanMunozD/workshop2/blob/master/imagenes/mvnFolders.PNG">
+
+## POM file
+
+### Questions
+
+* ¿What do means the word SNAPSHOT in the version value?
+
+The word SNAPSHOT refers to a version of the proyect that is in develop
+
+* ¿What is the purpose of the packing tag into the POM file?
+
+The purpose of the packaging tag in the POM file is to aggregate other projects into maven
+
+* ¿What is the purpose of the dependencies and dependency tags into the POM file?
+
+The purpose of this tag is to read project files from the remote respositories specified
+
+## Dependency Management
+
+* Go to the MVNRepository and search fortika-core library. Add a new dependency to the POM file with the last version of this library.
+
+As shown in the following image the dependency was added to the project
+
+<img  src="https://github.com/JuanMunozD/workshop2/blob/master/imagenes/mvnTika.PNG">
+
+* Replace the App class in the source folder with the FileSpy class provided in the workshop.
+
+The following image show the change
+
+<img  src="https://github.com/JuanMunozD/workshop2/blob/master/imagenes/mvnSpy.PNG">
+
+* What is the functionality of this class?
+
+The function that this class gives to the user is to find an archive in an specific route, in this case
+
+* Add the next XML code to the POM file.
+
+<img  src="https://github.com/JuanMunozD/workshop2/blob/master/imagenes/mvnPlugins.PNG">
+
+## Building Lifecycles and Plugins
+
+### Tasks
+
+* The three principal Maven lifecycles are clean, defaul tand site. Describe each one.
+
+Clean: Is used to clean the files and directories generated by maven
+Default: Basic configuration of maven if not specified
+Site: Used to generate a site for the project in which includes the reports that are in the POM
+
+* Using the terminal execute the command mvn compile. Take the output screenshot. What is this command using for? What are transitive dependencies?
+
+This command is used to compile the project with all the dependencies into the POM
+
+<img  src="https://github.com/JuanMunozD/workshop2/blob/master/imagenes/mvnCompile.PNG">
+
+Transitive dependencies are dependencies required by our direct dependencies
+
+* Using the terminal execute the command mvn package. Take the output screenshot. What is this command using for?
+
+This command is used to build the project completely
+
+<img  src="https://github.com/JuanMunozD/workshop2/blob/master/imagenes/mvnPackage.PNG">
+
+* Using the terminal execute the command mvn install. Take the output screenshot. What is this command using for?
+
+This command is used to install the package in the local repository
+
+<img  src="https://github.com/JuanMunozD/workshop2/blob/master/imagenes/mvnInstall.PNG">
+
+* Generate a new maven project in other folder using the maven command line tools, this project should has as groupId "edu.eci" and as artifactId "another-maven-project". Take the output screenshot.
+
+<img  src="https://github.com/JuanMunozD/workshop2/blob/master/imagenes/mvnAnother.PNG">
+
+* Replace the code of the App.java class with the following code and do all the necessary steps to compile the code.
+
+<img  src="https://github.com/JuanMunozD/workshop2/blob/master/imagenes/mvnMain.PNG">
+
+* Use the following command to execute the file-spy application mvn exec:java -Dexec.mainClass="edu.eci.FileSpy". Take the output screenshot.
+
+<img  src="https://github.com/JuanMunozD/workshop2/blob/master/imagenes/mvnExecute.PNG">
