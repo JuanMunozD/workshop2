@@ -18,7 +18,7 @@ mvn archetype:generate -B -DgroupId=edu.eci -DartifactId=file-spy
 
 With this command a new maven project was created as shown in the next image
 
-<img  src="https://github.com/JuanMunozD/workshop2/blob/master/imagenes/mvnNew.PNG">
+<img  src="https://github.com/JuanMunozD/workshop2/blob/master/imagenes/mvnNew.png">
 
 ### Questions
 
